@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/static/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+    <script src="http://code.angularjs.org/1.5.5/angular-route.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script type="text/javascript" src="/static/restangular.js"></script>
+    <script src="/static/app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>    
+
+  </head>
+  <body>
+
+    <div ng-app="twisted-rest-example">
+      <div ng-view></div>
+
+
+      <!-- CACHE FILE: header.html -->
+      <script type="text/ng-template" id="header.html">
+        <div class="header clearfix">
+
+          <div class="control-group-1">
+            <a class="logo" ng-click="$root.go_landing()">LOGO</a>
+            <button ng-show="paged" ng-click="prev_page()">Prev</button>
+            <button ng-show="paged" ng-click="next_page()">Next</button>
+          </div>
+          
+          <div class="control-group-2">
+            <label>Token: <input type="text" ng-model="$root.token"></input></label>
+            <button ng-click="$root.new_account()">New account</button>
+            <button ng-click="$root.new_transaction()">New transaction</button>
+            
+          </div>
+        </div>
+        <div class="error" ng-show="last_error" ng-bind="last_error"></div>
+      </script>
+      
+      <!-- CACHE FILE: landing.html -->
+      <script type="text/ng-template" id="landing.html">
+        <div ng-include="'header.html'"></div>
+        <div class="contents">
+          <table class="accounts-table data-table active-table">
+            <tr>
+              <th>id</th>
+              <th>currency</th>
+              <th>balance</th>
+            </tr>
+            <tr class="data-row" ng-repeat="i in accounts track by $index" ng-click="show_detail(i['id'])">
+              <td ng-bind="i['id']"></td>
+              <td ng-bind="i['currency']"></td>
+              <td class="amount" ng-bind="i['balance'] | number : 2"></td>
+            </tr>
+          </table>
+        </div>
+      </script>
+
+      <!-- CACHE FILE: account-detail.html -->
+      <script type="text/ng-template" id="account-detail.html">
+        <div ng-include="'header.html'"></div>
+        <div class="contents">
+          
+          <div class="account-title"><label>AccountId: </label><span ng-bind="account_id"></span></div>
+          <table class="transactions-table data-table">
+            <tr>
+              <th>id</th>
+              <th>source_id</th>
+              <th>dest_id</th>
+              <th>amount</th>
+            </tr>
+            <tr class="data-row" ng-repeat="i in transactions track by $index">
+              <td ng-bind="i['id']"></td>
+              <td ng-bind="i['source_id']"></td>
+              <td ng-bind="i['dest_id']"></td>
+              <td class="amount" ng-bind="i['amount']"></td>
+            </tr>
+          </table>
+        </div>
+      </script>
+
+      <!-- CACHE FILE: new-account.html -->
+      <script type="text/ng-template" id="new-account.html">
+        <div ng-include="'header.html'"></div>
+        <div class="contents">
+          <label>Currency: <select ng-model="currency">
+              <option ng-repeat="i in currencies" value="{{i}}">{{i}}</option>
+          </select></label>
+          <button ng-click="do_create()">Create</button>
+          <br/>
+          <label ng-show="last_account_id">Inserted: <span ng-bind="last_account_id"></span></label>
+        </contents>
+      </script>
+
+      <!-- CACHE FILE: new-transaction.html -->
+      <script type="text/ng-template" id="new-transaction.html">
+        <div ng-include="'header.html'"></div>
+        <div class="contents">
+          <label>source_id: <input ng-model="source_id"></input></label>
+          <label>dest_id: <input ng-model="dest_id"></input></label>
+          <label>amount: <input ng-model="amount"></input></label>
+          
+          <button ng-click="do_create()">Create</button>
+          <br/>
+          <label ng-show="last_transaction_id">Inserted: <span ng-bind="last_transaction_id"></span></label>
+        </contents>
+      </script>
+
+      
+    </div>
+  </body>
+</html>

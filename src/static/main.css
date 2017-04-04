@@ -1,0 +1,101 @@
+.clearfix:after {
+    content: " ";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+body {
+    text-align: center;
+    font-family: Open Sans;
+    margin: 0;
+}
+
+.header {
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: darkblue;
+    color: white;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.error {
+    background-color: #f1646c;
+    font-size: 16;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.header > div {
+    display: inline-block;
+}
+
+.header .logo {
+    font-size: 24;
+    font-weight: bold;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.header .control-group-1 {
+    float: left;
+}
+
+.header .control-group-2 {
+    float: right;
+}
+
+.contents {
+    padding: 10px;    
+}
+
+.data-table {
+    display: inline;
+    border-collapse: collapse;
+}
+
+.data-table .amount {
+    text-align: right;
+}
+
+.data-table td:nth-child(1), th:nth-child(1) {
+    border-left: 1px solid lightgrey;
+}
+
+.accounts-table tr:nth-child(even) {
+    background-color: #ffeacb;
+}
+
+.transactions-table tr:nth-child(even) {
+    background-color: #d1e8ee;
+}
+
+.data-table td {
+    padding: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0;
+    border-right: 1px solid lightgrey;
+    text-align: center;
+}
+
+.data-table th {
+    padding: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right: 1px solid lightgrey;
+    background-color: darkblue;
+    color: white;
+    font-weight: normal;
+}
+
+.active-table {
+    cursor: pointer;    
+}
+
+.active-table tr.data-row:hover {
+    background-color: lightgreen;
+}
