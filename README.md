@@ -8,7 +8,7 @@ This is a combination of Python2.7, Twisted, AngularJS (+Restangular), PostgreSQ
 2) alter service-postgresql.conf if needed
 3) pip install -r requirements.txt
 4) cd src
-5) python service.py 
+5) python service.py service-postgresql.conf
 
 ## Scaling
 
